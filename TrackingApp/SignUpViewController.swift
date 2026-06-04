@@ -9,38 +9,44 @@ import UIKit
 import FirebaseAuth
 
 class SignUpViewController: UIViewController {
+    //creamos las variables
     @IBOutlet weak var usernameTextField: UITextField!
-    
     @IBOutlet weak var passwordTextField: UITextField!
-    
     @IBOutlet weak var passwordConfirmTextField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
+    //creamos funcion de registrarse
     @IBAction func signUp(_ sender: Any) {
+        //creamos las variables y si no las encuentra asignamos ""
         let username = usernameTextField.text ?? ""
         let password = passwordTextField.text ?? ""
         let passwordConfirm = passwordConfirmTextField.text ?? ""
-        
+        //si la contraseña no coincide lanza mensaje de error
         if password != passwordConfirm {
             let alert = UIAlertController(title: "Sign Up error", message: "Password do not match", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil)) //el handler seria la funcion lambda que quieres que ocurra cuando el usuario pulse el boton
+            //se puede añadir que texto pone en el boton de la alerta
+            //el handler seria la funcion lambda que quieres que ocurra cuando el usuario pulse el boton Ok
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil)) 
             self.present(alert, animated: true, completion: nil)
             return
         }
-        
+        //funcion que recibe el usuario y contraseña, y certifica que sen correctos
         Auth.auth().createUser(withEmail: username, password: password) { [unowned self] authResult, error in
+            //si las variables username y password no son correctas, sale el mensaje
             guard error == nil else {
                 print("Error creating user: \(error!)")
-                
+                //manda un mesaje de error con la descripcion de lo ocurrido, de tipo alerta
                 let alert = UIAlertController(title: "Sign Up error", message: error!.localizedDescription, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil)) //el handler seria la funcion lambda que quieres que ocurra cuando el usuario pulse el boton
+                //se puede añadir que texto pone en el boton de la alerta
+                //el handler seria la funcion lambda que quieres que ocurra cuando el usuario pulse el boton Ok
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
                 return
             }
+            //si todo ha ido bien, lanza mensaje positivo
             let alert = UIAlertController(title: "Sign Up", message: "Account created successfully", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {_ in
                 //popViewcontroller cierra el controlador en el que estas y vuelve al anterior
