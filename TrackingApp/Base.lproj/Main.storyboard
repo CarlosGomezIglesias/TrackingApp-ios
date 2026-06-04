@@ -13,14 +13,14 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="SignInViewController" customModule="TrackingApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="1071"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BjC-tN-Xm2">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BjC-tN-Xm2">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="1500"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4OS-Z0-JkU" userLabel="Scroll Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="1000"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="855"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="apple.image.playground" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="o5i-I5-KFi">
                                                 <rect key="frame" x="76" y="48" width="240" height="128"/>
@@ -83,10 +83,66 @@
                                                     <segue destination="z9Y-q6-ezo" kind="show" id="Ik1-NU-rXq"/>
                                                 </connections>
                                             </button>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xpE-XC-t3P" userLabel="Separator View">
+                                                <rect key="frame" x="8" y="578" width="377" height="42"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zo0-Du-F3C" userLabel="Divider View">
+                                                        <rect key="frame" x="0.0" y="21" width="377" height="1"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                        <color key="backgroundColor" systemColor="separatorColor"/>
+                                                    </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="OR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6mc-HP-khp">
+                                                        <rect key="frame" x="163" y="13" width="47" height="21"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sign Up with" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ono-Qf-Ia0">
+                                                <rect key="frame" x="8" y="646" width="377" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6sr-fl-lAX">
+                                                <rect key="frame" x="76" y="675" width="240" height="38"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                <color key="tintColor" systemColor="systemRedColor"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="tinted" image="google-icon" title="Google" imagePadding="8"/>
+                                                <connections>
+                                                    <action selector="signInWithGoogle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="poK-mE-9hD"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e5a-2M-xrC">
+                                                <rect key="frame" x="76" y="720" width="240" height="38"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="tinted" image="facebook-icon" title="Facebook" imagePadding="8"/>
+                                                <connections>
+                                                    <action selector="signInWithFacebook:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YQo-Qo-hfr"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cS-vx-uTc">
+                                                <rect key="frame" x="76" y="768" width="240" height="37"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                <color key="tintColor" systemColor="labelColor"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="tinted" image="apple-icon" title="Apple" imagePadding="8"/>
+                                                <connections>
+                                                    <action selector="signInWithApple:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BW6-UC-ys0"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="1000" id="pAd-is-8EH"/>
+                                            <constraint firstAttribute="height" constant="855" id="pAd-is-8EH"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -110,32 +166,85 @@
                             <constraint firstAttribute="trailing" secondItem="BjC-tN-Xm2" secondAttribute="trailing" id="tjo-E8-oQX"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Sign In" id="U8k-Fa-yK8" userLabel="Sign In"/>
+                    <navigationItem key="navigationItem" title="Sign In" id="U8k-Fa-yK8"/>
+                    <size key="freeformSize" width="393" height="1071"/>
                     <connections>
                         <outlet property="passwordTextField" destination="oZb-Kx-azh" id="iOC-8b-LOX"/>
                         <outlet property="usernameTextField" destination="7E0-kf-3tF" id="NkC-tt-erx"/>
-                        <segue destination="qz2-c0-ZNG" kind="show" identifier="NavigateToHome" id="iUw-AM-6Em"/>
+                        <segue destination="NWg-8A-uv7" kind="show" identifier="NavigateToHome" id="x8c-3W-3wr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="892.36641221374043" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="892.36641221374043" y="83.450704225352112"/>
         </scene>
-        <!--Home-->
-        <scene sceneID="e3v-ti-Zcf">
+        <!--Tracks-->
+        <scene sceneID="z31-ka-8DE">
             <objects>
-                <viewController id="qz2-c0-ZNG" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="LUV-sF-5eE">
+                <viewController id="vLd-RR-eCE" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="muS-Lo-k1x">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="4Vc-cN-T9E"/>
+                        <viewLayoutGuide key="safeArea" id="dCn-G2-Gv6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Home" id="LjU-Zx-Mej"/>
+                    <navigationItem key="navigationItem" title="Tracks" id="mTb-QG-4FT"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="q9y-tn-s9C" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="twH-II-s0d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="892" y="749"/>
+            <point key="canvasLocation" x="-289" y="2467"/>
+        </scene>
+        <!--Create-->
+        <scene sceneID="rFQ-uZ-7S9">
+            <objects>
+                <viewController id="wh2-HX-FLl" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NFw-h1-bQh">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Cdz-MO-GE4"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Create" id="eDv-Bx-OAX"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WOI-Wa-yie" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="891" y="2467"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="52n-tF-dcV">
+            <objects>
+                <viewController id="GoI-6W-mnh" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="C8M-9u-hyO">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="E5v-kg-SRW"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Settings" id="hF8-l7-1aA"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AX6-UF-5Wa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2265" y="2467"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="gjr-pg-kTf">
+            <objects>
+                <tabBarController id="NWg-8A-uv7" customClass="HomeViewController" customModule="TrackingApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" title="Home" id="1K7-4f-egi"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gUA-06-WDG">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="LP1-Gv-wBz" kind="relationship" relationship="viewControllers" id="15P-Ze-JBF"/>
+                        <segue destination="YU0-vN-rjW" kind="relationship" relationship="viewControllers" id="EbX-Rt-neA"/>
+                        <segue destination="QYZ-DG-izA" kind="relationship" relationship="viewControllers" id="20O-kf-bf6"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SKr-Ye-KGW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="891" y="930"/>
         </scene>
         <!--Sign Up-->
         <scene sceneID="gMg-d4-IRQ">
@@ -149,7 +258,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="1160"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y2C-PK-gsQ" userLabel="Scroll Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="1000"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="870"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="apple.image.playground" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Er5-E8-Gn4">
                                                 <rect key="frame" x="65" y="48" width="240" height="128"/>
@@ -273,7 +382,7 @@
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="1000" id="aHh-Jk-z3G"/>
+                                            <constraint firstAttribute="height" constant="870" id="aHh-Jk-z3G"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -307,16 +416,17 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZqB-rg-W79" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1708" y="4"/>
+            <point key="canvasLocation" x="2004" y="83"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2Zb-W9-r6e">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7xe-fu-JNs" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Gy2-nW-MrU">
-                        <rect key="frame" x="0.0" y="118" width="393" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="Gy2-nW-MrU">
+                        <rect key="frame" x="0.0" y="118" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <navigationBarAppearance key="standardAppearance"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -325,16 +435,91 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="scu-xm-diy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-34.351145038167935" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="-185" y="83"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="fAk-QI-i3L">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LP1-Gv-wBz" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Home" image="list.bullet.circle" catalog="system" selectedImage="list.bullet.circle.fill" id="9uM-Aa-CTK"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Tgr-Ns-FDl">
+                        <rect key="frame" x="0.0" y="118" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vLd-RR-eCE" kind="relationship" relationship="rootViewController" id="iNr-OH-Haw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VIa-SI-gGC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-289" y="1665"/>
+        </scene>
+        <!--Create-->
+        <scene sceneID="VLw-Bm-swR">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YU0-vN-rjW" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Create" image="plus.circle" catalog="system" selectedImage="plus.circle.fill" id="7QY-ZH-POL"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9se-Vk-TK3">
+                        <rect key="frame" x="0.0" y="118" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="wh2-HX-FLl" kind="relationship" relationship="rootViewController" id="JK4-zy-Cu5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JkB-hQ-PAz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="891" y="1665"/>
+        </scene>
+        <!--Settiings-->
+        <scene sceneID="xrG-51-bIE">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QYZ-DG-izA" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Settiings" image="gear.circle" catalog="system" selectedImage="gear.circle.fill" id="32h-B2-yam"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="msl-QP-0nS">
+                        <rect key="frame" x="0.0" y="118" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="GoI-6W-mnh" kind="relationship" relationship="rootViewController" id="C0f-yy-xf4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Aqg-aq-Sz4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2265" y="1666"/>
         </scene>
     </scenes>
     <resources>
+        <image name="apple-icon" width="24" height="24"/>
         <image name="apple.image.playground" catalog="system" width="128" height="119"/>
+        <image name="facebook-icon" width="24" height="24"/>
+        <image name="gear.circle" catalog="system" width="128" height="123"/>
+        <image name="gear.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="google-icon" width="24" height="24"/>
+        <image name="list.bullet.circle" catalog="system" width="128" height="123"/>
+        <image name="list.bullet.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="plus.circle" catalog="system" width="128" height="123"/>
+        <image name="plus.circle.fill" catalog="system" width="128" height="123"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="separatorColor">
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
