@@ -13,7 +13,7 @@ class SettingsViewController: UITableViewController {
     
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
-
+    
     @IBOutlet weak var signOutCell: UITableViewCell!
     
     override func viewDidLoad() {
@@ -23,37 +23,37 @@ class SettingsViewController: UITableViewController {
         profileImageView.layer.cornerRadius = profileImageView.frame.height / 2
         profileImageView.layer.borderWidth = 3
         profileImageView.layer.borderColor = UIColor.systemBlue.cgColor
-                
+        
         let userId = Auth.auth().currentUser!.uid
         
         Task {
-                    let db = Firestore.firestore()
-                    let docRef = db.collection("Users").document(userId)
+            let db = Firestore.firestore()
+            let docRef = db.collection("Users").document(userId)
+            
+            do {
+                let user = try await docRef.getDocument(as: User.self)
+                
+                DispatchQueue.main.async {
+                    self.usernameLabel.text = user.fullName()
                     
-                    do {
-                        let user = try await docRef.getDocument(as: User.self)
-                        
-                        DispatchQueue.main.async {
-                            self.usernameLabel.text = user.fullName()
-                            
-                            if let url = user.profileImageUrl {
-                                self.profileImageView.loadFrom(url: url)
-                            }
-                        }
-                        
-                    } catch {
-                        print("Error decoding user: \(error)")
+                    if let url = user.profileImageUrl {
+                        self.profileImageView.loadFrom(url: url)
                     }
                 }
+                
+            } catch {
+                print("Error decoding user: \(error)")
             }
-        
-        
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        }
+    }
+    
+    
+    
+    // Uncomment the following line to preserve selection between presentations
+    // self.clearsSelectionOnViewWillAppear = false
+    
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem
     
     func signOut() {
         do {
@@ -81,9 +81,10 @@ class SettingsViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         //TODO si el codigo crece calcular las coordenadas de las celdas (indexPath) dinamicamente usando el siguiente metodo
         //tableView.indexPath(for: signOutCell)
-            
+        
         
     }
+}
         
     
 
