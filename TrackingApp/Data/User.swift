@@ -8,13 +8,13 @@
 import Foundation
 
 struct User: Codable, Sendable {
-    let id: String
-    let username: String
-    let firstName: String
-    let lastName: String
-    let gender: Int
-    let birthDate: Int64?
-    let profileImageUrl: String?
+    var id: String
+    var username: String
+    var firstName: String
+    var lastName: String
+    var gender: Int
+    var birthDate: Int64?
+    var profileImageUrl: String?
     
     func fullName() -> String {
         return "\(firstName) \(lastName)"
