@@ -33,18 +33,17 @@ class LocationViewController: UIViewController {
                 let db = Firestore.firestore()
                 let querySnapshot = try await db.collection("Routes")
                     .whereField("userId", isEqualTo: userId)
-                    .whereField("endDate", isEqualTo: -1)
+                    .whereField("ended", isEqualTo: false)
                     .limit(to: 1)
                     .getDocuments()
                 
                 guard let document = querySnapshot.documents.first else {
-                    // TODO: No hay ninguna ruta activa
+                    
                     return
                 }
 
                 let route = try document.data(as: Route.self)
                 
-                // TODO: Hay una ruta activa, reactiva el servicio de geolocalización para dicha ruta
                 
                 DispatchQueue.main.async {
                     LocationService.shared.startTracking(forRouteId: route.id)
@@ -97,7 +96,7 @@ class LocationViewController: UIViewController {
             do {
                 let db = Firestore.firestore()
                 
-                try db.collection("Routes").document(LocationService.shared.routeId!).setData(["endDate": Date().millisecondsSince1970], merge: true)
+                try db.collection("Routes").document(LocationService.shared.routeId!).setData(["endDate": Date().millisecondsSince1970, "ended": true], merge: true)
                 
                 DispatchQueue.main.async {
                     LocationService.shared.stopTracking()

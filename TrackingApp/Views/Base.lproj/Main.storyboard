@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="UIMenu" message="Requires Xcode 11 or later." minToolsVersion="11.0" requiredIntegratedClassName="UICommandDiff"/>
@@ -179,7 +180,7 @@
             </objects>
             <point key="canvasLocation" x="892.36641221374043" y="83.450704225352112"/>
         </scene>
-        <!--Tracks-->
+        <!--Routes-->
         <scene sceneID="z31-ka-8DE">
             <objects>
                 <viewController id="vLd-RR-eCE" customClass="RoutesViewController" customModule="TrackingApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -191,7 +192,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Yid-tg-MCg">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Route Cell" id="Yid-tg-MCg" customClass="RouteViewCell" customModule="TrackingApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Yid-tg-MCg" id="uoI-PM-Imf">
@@ -207,6 +208,10 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="titleLabel" destination="UHT-Z4-vOJ" id="m6Y-1C-tba"/>
+                                            <segue destination="ECm-0v-ITD" kind="show" id="GJP-3F-9z8"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -220,16 +225,60 @@
                             <constraint firstItem="ldi-VW-GtC" firstAttribute="leading" secondItem="muS-Lo-k1x" secondAttribute="leading" id="fzw-qV-9nr"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Tracks" id="mTb-QG-4FT"/>
+                    <navigationItem key="navigationItem" title="Routes" id="mTb-QG-4FT"/>
+                    <connections>
+                        <outlet property="tableView" destination="ldi-VW-GtC" id="mRc-uA-D1U"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="twH-II-s0d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-289.3129770992366" y="2466.9014084507044"/>
         </scene>
+        <!--Map View Controller-->
+        <scene sceneID="IIp-uY-VAk">
+            <objects>
+                <viewController id="ECm-0v-ITD" customClass="MapViewController" customModule="TrackingApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cEm-dd-YuN">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="51l-uI-iNo">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <standardMapConfiguration key="preferredConfiguration"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VRE-Jk-b4J">
+                                <rect key="frame" x="270" y="680" width="107" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="camera.metering.center.weighted" catalog="system" title="Center"/>
+                                <connections>
+                                    <action selector="beginFollowingUser:" destination="ECm-0v-ITD" eventType="touchUpInside" id="2YM-yy-Len"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="oSP-sq-9M1"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="51l-uI-iNo" firstAttribute="top" secondItem="cEm-dd-YuN" secondAttribute="top" id="744-O9-fAO"/>
+                            <constraint firstAttribute="bottom" secondItem="51l-uI-iNo" secondAttribute="bottom" id="P6j-Ki-1os"/>
+                            <constraint firstItem="51l-uI-iNo" firstAttribute="leading" secondItem="cEm-dd-YuN" secondAttribute="leading" id="Qig-C2-ba1"/>
+                            <constraint firstAttribute="trailing" secondItem="51l-uI-iNo" secondAttribute="trailing" id="zqY-ef-DEY"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="5ZL-Jp-bR5"/>
+                    <connections>
+                        <outlet property="followUserButton" destination="VRE-Jk-b4J" id="ogA-7w-7pO"/>
+                        <outlet property="mapView" destination="51l-uI-iNo" id="sj4-TX-P6g"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dxp-bP-56T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-289.3129770992366" y="3177.4647887323945"/>
+        </scene>
         <!--Create-->
         <scene sceneID="rFQ-uZ-7S9">
             <objects>
-                <viewController id="wh2-HX-FLl" sceneMemberID="viewController">
+                <viewController id="wh2-HX-FLl" customClass="LocationViewController" customModule="TrackingApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NFw-h1-bQh">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -243,6 +292,9 @@
                                         <color key="tintColor" systemColor="systemGreenColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Start route"/>
+                                        <connections>
+                                            <action selector="startTracking:" destination="wh2-HX-FLl" eventType="touchUpInside" id="veh-3k-WeP"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VM6-4g-jtc">
                                         <rect key="frame" x="143" y="494" width="100" height="35"/>
@@ -250,6 +302,9 @@
                                         <color key="tintColor" systemColor="systemRedColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="End route"/>
+                                        <connections>
+                                            <action selector="stopTracking:" destination="wh2-HX-FLl" eventType="touchUpInside" id="JaX-IC-1dr"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -265,14 +320,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Create" id="eDv-Bx-OAX"/>
+                    <connections>
+                        <outlet property="startTrackingButton" destination="eOP-gF-Fdf" id="Rag-oB-n4H"/>
+                        <outlet property="stopTrackingButton" destination="VM6-4g-jtc" id="2PH-fa-SWS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WOI-Wa-yie" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Jdm-Ux-Exa">
-                    <rect key="frame" x="0.0" y="0.0" width="106" height="35"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="filled" title="Start route"/>
-                </button>
             </objects>
             <point key="canvasLocation" x="890.83969465648852" y="2466.9014084507044"/>
         </scene>
@@ -366,9 +419,13 @@
                             <rect key="frame" x="0.0" y="0.0" width="393" height="199"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person.crop.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="CYL-R0-EZh">
+                                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person.crop.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="CYL-R0-EZh">
                                     <rect key="frame" x="132" y="34.666666666666515" width="128" height="128"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <gestureRecognizers/>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="omx-0t-DVF" appends="YES" id="4os-CC-QJT"/>
+                                    </connections>
                                 </imageView>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -494,7 +551,7 @@
                     <navigationItem key="navigationItem" title="Profile" id="zZM-iM-ExD">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="hFv-F8-te8">
                             <connections>
-                                <segue destination="7J5-Zm-Z6V" kind="unwind" identifier="UnwindSegue" unwindAction="endEditing:" id="N9a-2n-X84"/>
+                                <segue destination="7J5-Zm-Z6V" kind="unwind" identifier="UnwindSegue" unwindAction="endEditing:" id="xHp-M1-tys"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="fkb-K3-oPY">
@@ -509,11 +566,16 @@
                         <outlet property="genderButton" destination="vGF-Dm-IBl" id="qOQ-1e-uB6"/>
                         <outlet property="lastNameTextField" destination="m94-Br-DYg" id="y8Z-qS-nd6"/>
                         <outlet property="profileImageView" destination="CYL-R0-EZh" id="4oA-2a-Quq"/>
-                        <outlet property="userNameTextField" destination="XAh-Gs-r3b" id="5HV-KL-FMY"/>
+                        <outlet property="usernameTextField" destination="XAh-Gs-r3b" id="ye1-71-5Cp"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pud-y7-sHx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="7J5-Zm-Z6V" userLabel="Exit" sceneMemberID="exit"/>
+                <tapGestureRecognizer id="omx-0t-DVF">
+                    <connections>
+                        <action selector="selectPicture:" destination="eZs-un-Ngr" id="1Bc-tD-xeN"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="4205.3435114503818" y="2466.9014084507044"/>
         </scene>
@@ -732,11 +794,11 @@
             </objects>
             <point key="canvasLocation" x="-185" y="83"/>
         </scene>
-        <!--Home-->
+        <!--Routes-->
         <scene sceneID="fAk-QI-i3L">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LP1-Gv-wBz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="list.bullet.circle" catalog="system" selectedImage="list.bullet.circle.fill" id="9uM-Aa-CTK"/>
+                    <tabBarItem key="tabBarItem" title="Routes" image="list.bullet.circle" catalog="system" selectedImage="list.bullet.circle.fill" id="9uM-Aa-CTK"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Tgr-Ns-FDl">
                         <rect key="frame" x="0.0" y="118" width="393" height="44"/>
@@ -811,6 +873,7 @@
     <resources>
         <image name="apple-icon" width="24" height="24"/>
         <image name="apple.image.playground" catalog="system" width="128" height="119"/>
+        <image name="camera.metering.center.weighted" catalog="system" width="128" height="93"/>
         <image name="chevron.up.chevron.down" catalog="system" width="109" height="128"/>
         <image name="facebook-icon" width="24" height="24"/>
         <image name="gear.circle" catalog="system" width="128" height="123"/>

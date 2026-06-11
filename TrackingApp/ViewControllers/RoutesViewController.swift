@@ -35,7 +35,7 @@ class RoutesViewController: UIViewController, UITableViewDataSource {
         Task {
             do {
                 let db = Firestore.firestore()
-                let querySnapshot = try await db.collection("Routes").whereField("userId", isEqualTo: userId).getDocuments()
+                let querySnapshot = try await db.collection("Routes").whereField("userId", isEqualTo: userId).order(by: "startDate", descending: true).getDocuments()
                 for document in querySnapshot.documents {
                     let route = try document.data(as: Route.self)
                     routes.append(route)
