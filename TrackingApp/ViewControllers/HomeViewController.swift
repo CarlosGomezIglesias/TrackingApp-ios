@@ -14,7 +14,7 @@ class HomeViewController: UITabBarController {
 
         // Do any additional setup after loading the view.
     }
-    //esconder la barra de navegacion
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
@@ -26,6 +26,8 @@ class HomeViewController: UITabBarController {
         navigationController?.navigationBar.isHidden = false
         navigationItem.hidesBackButton = false
     }
+    
+
     /*
     // MARK: - Navigation
 

@@ -8,6 +8,8 @@
 import UIKit
 
 class RouteViewCell: UITableViewCell {
+    
+    @IBOutlet weak var titleLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -18,6 +20,10 @@ class RouteViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func configure(with route: Route) {
+        titleLabel.text = route.id
     }
 
 }

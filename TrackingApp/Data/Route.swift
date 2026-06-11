@@ -10,6 +10,7 @@ struct Route: Codable {
     let userId: String
     let startDate: Int64
     var endDate: Int64?
+    var ended: Bool
     
     
     

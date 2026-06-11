@@ -6,7 +6,6 @@
 //
 
 struct Coordinate: Codable {
-    let id: String
     let routeId: String
     let latitude: Double
     let longitude: Double

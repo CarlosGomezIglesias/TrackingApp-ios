@@ -15,25 +15,52 @@ class SettingsViewController: UITableViewController {
     
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
-    
+
     @IBOutlet weak var signOutCell: UITableViewCell!
     
+    
+    
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         
         profileImageView.setProfileStyle()
         
         fetchUserData()
+
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
     }
     
-    
-    
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = false
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    func fetchUserData() {
+        
+        let userId = Auth.auth().currentUser!.uid
+        
+        Task {
+            let db = Firestore.firestore()
+            let docRef = db.collection("Users").document(userId)
+            
+            do {
+                user = try await docRef.getDocument(as: User.self)
+                
+                DispatchQueue.main.async {
+                    guard let user = self.user else { return }
+                    
+                    self.usernameLabel.text = user.fullName()
+                    
+                    if let url = user.profileImageUrl {
+                        self.profileImageView.loadFrom(url: url)
+                    }
+                }
+                
+            } catch {
+                print("Error decoding user: \(error)")
+            }
+        }
+    }
     
     func signOut() {
         do {
@@ -43,65 +70,36 @@ class SettingsViewController: UITableViewController {
         }
         navigationController?.navigationController?.popToRootViewController(animated: true)
     }
-    func fetchUserData() {
-            
-            let userId = Auth.auth().currentUser!.uid
-            
-            Task {
-                let db = Firestore.firestore()
-                let docRef = db.collection("Users").document(userId)
-                
-                do {
-                    user = try await docRef.getDocument(as: User.self)
-                    
-                    DispatchQueue.main.async {
-                        guard let user = self.user else { return }
-                        
-                        self.usernameLabel.text = user.fullName()
-                        
-                        if let url = user.profileImageUrl {
-                            self.profileImageView.loadFrom(url: url)
-                        }
-                    }
-                    
-                } catch {
-                    print("Error decoding user: \(error)")
-                }
-            }
-        }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let action = (indexPath.section, indexPath.row)
         
-        
         switch action {
-        case (0,0):
-            
+        case (0, 0):
             break
-        case (1,0):
+        case (1, 0):
             signOut()
             break
-        default :
+        default:
             break
         }
+        
+        // TODO: Si este codigo crece, considera calcular las coordenadas de las celdas (indexPath) dinamicamente usando el siguiente método:
+        // tableView.indexPath(for: signOutCell)
+        
         tableView.deselectRow(at: indexPath, animated: true)
-        //TODO si el codigo crece calcular las coordenadas de las celdas (indexPath) dinamicamente usando el siguiente metodo
-        //tableView.indexPath(for: signOutCell)
-        
-        
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "NavigateToEditProfile" {
             let editProfileViewController = (segue.destination as! UINavigationController).viewControllers[0] as! ProfileEditViewController
             editProfileViewController.user = user
         }
     }
-    @IBAction func endEditing(_ sender: UIStoryboardSegue) {
-           fetchUserData()
-       }
-}
-        
     
+    @IBAction func endEditing(_ sender: UIStoryboardSegue) {
+        fetchUserData()
+    }
 
     // MARK: - Table view data source
 
@@ -141,7 +139,7 @@ class SettingsViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
     */
 
@@ -170,4 +168,4 @@ class SettingsViewController: UITableViewController {
     }
     */
 
-
+}
